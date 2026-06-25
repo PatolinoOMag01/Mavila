@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "./NewCollection.css";
+import "../styles//NewCollection.css";
 
 export default function NewCollection() {
 

@@ -1,4 +1,4 @@
-import "./ColorSection.css";
+import "../styles/ColorSection.css";
 
 export default function ColorSection() {
 

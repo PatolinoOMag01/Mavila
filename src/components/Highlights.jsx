@@ -1,4 +1,4 @@
-import "./Highlights.css";
+import "../styles/Highlights.css";
 
 export default function Highlights() {
 
