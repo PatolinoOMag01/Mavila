@@ -1,0 +1,5 @@
+Pra começar a editar:
+npm install
+
+Rodar o site:
+npm run dev

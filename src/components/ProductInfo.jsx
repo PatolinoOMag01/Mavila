@@ -49,8 +49,10 @@ export default function ProductInfo() {
       </span>
 
       <div className="rating">
-        ★★★★★
-        <span> 4.9 (327 avaliações)</span>
+          ⭐⭐⭐⭐⭐
+           <span>
+               4.9 • 327 avaliações verificadas
+           </span>
       </div>
 
       <div className="price">

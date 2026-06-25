@@ -1,4 +1,5 @@
-import Navbar from "../components/Navbar";
+import PageTransition from "../components/PageTransition";
+
 import Hero from "../components/Hero";
 import NewCollection from "../components/NewCollection";
 import ColorSection from "../components/ColorSection";
@@ -8,10 +9,8 @@ import Experience from "../components/Experience";
 import Footer from "../components/Footer";
 
 export default function Home() {
-
   return (
-    <>
-      <Navbar />
+    <PageTransition>
       <Hero />
       <NewCollection />
       <ColorSection />
@@ -19,7 +18,6 @@ export default function Home() {
       <Highlights />
       <Experience />
       <Footer />
-    </>
+    </PageTransition>
   );
-
 }

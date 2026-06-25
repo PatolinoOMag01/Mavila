@@ -1,48 +1,85 @@
-import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { useEffect, useState, useContext } from "react";
+
 import { CartContext } from "../context/CartContext";
-import { FavoritesContext } from "../context/FavoritesContext";
+
+import CartDrawer from "./CartDrawer";
 
 export default function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
+  const [drawerOpen, setDrawerOpen] =
+    useState(false);
 
   const { cart } = useContext(CartContext);
-  const { favorites } =useContext(FavoritesContext);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener(
+      "scroll",
+      handleScroll
+    );
+
+    return () =>
+      window.removeEventListener(
+        "scroll",
+        handleScroll
+      );
+  }, []);
 
   return (
-    <header className="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-md">
-
-      <div className="max-w-7xl mx-auto px-8 py-5 flex items-center justify-between">
-
-        <Link to="/">
-          <h1 className="text-3xl font-bold tracking-widest">
-            MAVILA
-          </h1>
-        </Link>
-
-        <nav className="hidden md:flex gap-10 text-sm uppercase">
-          <a href="#">Lançamentos</a>
-          <a href="#">Masculino</a>
-          <a href="#">Feminino</a>
-          <a href="#">Coleções</a>
-          <a href="#">Sobre</a>
-        </nav>
-
-        <div className="flex gap-5 text-xl">
-
-          🔍
-
-          <Link to="/favorites" style=
-          {{ textDecoration:"none" }} > ❤️ ({favorites.length})
-          </Link>
-
-          <Link to="/cart" style={{ textDecoration: "none" }}>
-            🛒 ({cart.length})
-          </Link>
-
+    <>
+      <header
+        className={`navbar ${
+          scrolled ? "navbar-scrolled" : ""
+        }`}
+      >
+        <div className="navbar-logo">
+          <Link to="/">MAVILA</Link>
         </div>
 
-      </div>
+        <nav className="navbar-links">
+          <Link to="/">Home</Link>
 
-    </header>
+          <Link to="/mv01">
+            MV-01
+          </Link>
+
+          <Link to="/favorites">
+            Favoritos
+          </Link>
+        </nav>
+
+        <div className="navbar-actions">
+          <button
+            className="cart-icon"
+            onClick={() =>
+              setDrawerOpen(true)
+            }
+          >
+            🛒
+
+            {cart.length > 0 && (
+              <span className="cart-badge">
+                {cart.length}
+              </span>
+            )}
+          </button>
+
+            <Link to="/profile" className="nav-btn">
+                MV Club
+            </Link>
+        </div>
+      </header>
+
+      <CartDrawer
+        isOpen={drawerOpen}
+        onClose={() =>
+          setDrawerOpen(false)
+        }
+      />
+    </>
   );
 }

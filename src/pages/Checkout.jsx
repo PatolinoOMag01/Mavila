@@ -1,9 +1,10 @@
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
+import PageTransition from "../components/PageTransition";
+
 import "../styles/Checkout.css";
 
 export default function Checkout() {
-
   const { cart } = useContext(CartContext);
 
   const total = cart.reduce(
@@ -12,75 +13,64 @@ export default function Checkout() {
   );
 
   return (
+    <PageTransition>
+      <div className="checkout-page">
+        <div className="checkout-left">
+          <h1>Finalizar Compra</h1>
 
-    <div className="checkout-page">
+          <input
+            type="text"
+            placeholder="Nome Completo"
+          />
 
-      <div className="checkout-left">
+          <input
+            type="email"
+            placeholder="Email"
+          />
 
-        <h1>Finalizar Compra</h1>
+          <input
+            type="text"
+            placeholder="CEP"
+          />
 
-        <input
-          type="text"
-          placeholder="Nome Completo"
-        />
+          <input
+            type="text"
+            placeholder="Endereço"
+          />
 
-        <input
-          type="email"
-          placeholder="Email"
-        />
+          <input
+            type="text"
+            placeholder="Número"
+          />
 
-        <input
-          type="text"
-          placeholder="CEP"
-        />
+          <input
+            type="text"
+            placeholder="Cidade"
+          />
 
-        <input
-          type="text"
-          placeholder="Endereço"
-        />
+          <button>
+            Finalizar Pedido
+          </button>
+        </div>
 
-        <input
-          type="text"
-          placeholder="Número"
-        />
+        <div className="checkout-right">
+          <h2>Resumo do Pedido</h2>
 
-        <input
-          type="text"
-          placeholder="Cidade"
-        />
+          {cart.map((item, index) => (
+            <div key={index}>
+              <p>{item.name}</p>
 
-        <button>
-          Finalizar Pedido
-        </button>
+              <span>
+                R$ {item.price.toFixed(2)}
+              </span>
+            </div>
+          ))}
 
+          <h3>
+            Total: R$ {total.toFixed(2)}
+          </h3>
+        </div>
       </div>
-
-      <div className="checkout-right">
-
-        <h2>Resumo do Pedido</h2>
-
-        {cart.map((item,index)=>(
-
-          <div key={index}>
-
-            <p>{item.name}</p>
-
-            <span>
-              R$ {item.price.toFixed(2)}
-            </span>
-
-          </div>
-
-        ))}
-
-        <h3>
-          Total: R$ {total.toFixed(2)}
-        </h3>
-
-      </div>
-
-    </div>
-
+    </PageTransition>
   );
-
 }

@@ -1,49 +1,59 @@
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+
 export default function Hero() {
   return (
-    <section className="h-screen bg-black text-white">
+    <section className="hero">
 
-      <div className="max-w-7xl mx-auto h-full px-10 flex items-center">
+      <div className="hero-overlay"></div>
 
-        <div className="flex-1">
+      <div className="hero-container">
 
-          <h1 className="text-8xl font-bold mb-4">
+        <motion.div
+          className="hero-content"
+          initial={{ opacity: 0, x: -60 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <span className="hero-tag">
+            NOVA COLEÇÃO 2026
+          </span>
+
+          <h1>
+            MAVILA
+            <br />
             MV-01
           </h1>
 
-          <h2 className="text-3xl text-zinc-400 mb-8">
-            STREET LUXURY
-          </h2>
-
-          <p className="text-zinc-500 text-lg max-w-md mb-10">
-            Atitude. Conforto. Identidade.
-            O novo padrão do streetwear premium.
+          <p>
+            Criado para quem não segue tendências.
+            Criado para quem cria tendências.
           </p>
 
-          <div className="flex gap-5">
-
-            <button className="bg-white text-black px-8 py-4 rounded-full font-semibold hover:scale-105 duration-300">
+          <div className="hero-buttons">
+            <Link to="/mv01" className="btn-primary">
               Comprar Agora
-            </button>
+            </Link>
 
-            <button className="border border-zinc-700 px-8 py-4 rounded-full hover:bg-zinc-900 duration-300">
-              Explorar Coleção
-            </button>
-
+            <a href="#collection" className="btn-secondary">
+              Explorar
+            </a>
           </div>
+        </motion.div>
 
-        </div>
-
-        <div className="flex-1 flex justify-center">
-
+        <motion.div
+          className="hero-image"
+          initial={{ opacity: 0, x: 80 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1 }}
+        >
           <img
             src="/mv01.png"
-            className="w-[800px]"
+            alt="Tênis MV-01"
           />
-
-        </div>
+        </motion.div>
 
       </div>
-
     </section>
   );
 }
