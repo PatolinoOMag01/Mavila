@@ -14,7 +14,7 @@ body {
 /* HERO */
 
 .hero {
-  min-height: 90vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -23,11 +23,8 @@ body {
   gap: 50px;
 
   background:
-    radial-gradient(circle at top right,
-      rgba(255,255,255,0.06),
-      transparent 40%),
-    #0f0f0f;
-}
+    radial-gradient(circle at top right,#3a3a3a 0%,#111 40%,#000 100%);
+  }
 
 .hero-content {
   max-width: 600px;
@@ -39,17 +36,17 @@ body {
   font-size: 13px;
 }
 
-.hero h1 {
-  font-size: 90px;
-  line-height: 1;
-  margin: 15px 0;
+.hero h1{
+    font-size:clamp(4rem,8vw,8rem);
+    line-height:.9;
+    font-weight:900;
 }
 
 .hero p {
   color: #bbb;
-  font-size: 18px;
-  max-width: 500px;
-  margin-bottom: 30px;
+  max-width:480px;
+    opacity:.75;
+    line-height:1.8;
 }
 
 .hero-buttons {
@@ -63,6 +60,7 @@ body {
   padding: 14px 28px;
   border-radius: 999px;
   font-weight: 600;
+  transition:.3s;
 }
 
 .btn-secondary {
@@ -323,19 +321,27 @@ body {
 
 .hero-image {
   flex: 1;
-
+  position:relative;
   display: flex;
   justify-content: center;
 }
 
-.hero-image img {
-  width: 700px;
-  max-width: 100%;
+.hero-image img{
+    animation: float 5s ease-in-out infinite;
+}
 
-  object-fit: contain;
+@keyframes float{
+    0%{
+        transform:translateY(0);
+    }
 
-  filter:
-    drop-shadow(0 20px 50px rgba(255,255,255,0.08));
+    50%{
+        transform:translateY(-15px);
+    }
+
+    100%{
+        transform:translateY(0);
+    }
 }
 
 /* RESPONSIVO */
@@ -769,31 +775,6 @@ body {
   font-weight: 700;
 }
 
-.loading-screen {
-  position: fixed;
-  inset: 0;
-
-  background: #0f0f0f;
-
-  display: flex;
-  flex-direction: column;
-
-  justify-content: center;
-  align-items: center;
-
-  z-index: 99999;
-}
-
-.loading-screen h1 {
-  font-size: 70px;
-  font-weight: 900;
-}
-
-.loading-screen p {
-  color: #888;
-  margin-top: 10px;
-}
-
 .profile-page {
   min-height: 100vh;
 
@@ -852,4 +833,22 @@ body {
   color: white;
 
   cursor: pointer;
+}
+
+.hero-image::before{
+    content:"";
+    position:absolute;
+
+    width:450px;
+    height:450px;
+
+    border-radius:50%;
+
+    background:white;
+
+    filter:blur(180px);
+
+    opacity:.18;
+
+    z-index:-1;
 }
